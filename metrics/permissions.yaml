@@ -1,0 +1,24 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: kube-state-metrics-analyticsworkspaces
+rules:
+  - apiGroups: ["xlscsde.nhs.uk"]
+    resources: ["analyticsworkspaces"]
+    verbs: ["list", "watch"]
+  - apiGroups: ["apiextensions.k8s.io"]
+    resources: ["customresourcedefinitions"]
+    verbs: ["list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: kube-state-metrics-analyticsworkspaces
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: kube-state-metrics-analyticsworkspaces
+subjects:
+  - kind: ServiceAccount
+    name: observability-metrics-kube-state-metrics
+    namespace: observability-metrics  

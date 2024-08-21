@@ -1,0 +1,23 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: observability-metrics #${observability_metrics_namespace}
+resources:
+  - repository.yaml
+  - release.yaml
+  - namespace.yaml
+  - permissions.yaml
+patches:
+  - target:
+      group: v1
+      version: v1
+      kind: ServiceAccount
+      name: observability-metrics-kube-state-metrics
+      namespace: observability-metrics
+    patch: |-
+      apiVersion: v1
+      kind: ServiceAccount
+      metadata:
+        name: observability-metrics-kube-state-metrics
+        namespace: observability-metrics
+        annotations:
+          patched-by: flux

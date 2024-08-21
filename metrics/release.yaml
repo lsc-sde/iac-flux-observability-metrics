@@ -1,0 +1,29 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: observability-metrics
+  namespace: observability-metrics #${observability_metrics_namespace}
+  #annotations:
+    #xlscsde.nhs.uk/flux-branch: main #${keda_branch}
+spec:
+  #targetNamespace: observability-metrics #${observability_metrics_namespace}
+  releaseName: observability-metrics
+  chart:
+    spec:
+      chart: kube-prometheus-stack
+      version: "61.8.0" #${observability_metrics_chart_version}
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community
+        namespace: observability-metrics #${observability_metrics_namespace} 
+  interval: 10s
+  install:
+    remediation:
+      retries: -1
+    disableWait: true
+    disableWaitForJobs: true
+  upgrade:
+    remediation:
+      retries: -1
+    disableWait: true
+    disableWaitForJobs: true

@@ -8,16 +8,22 @@ resources:
   - permissions.yaml
 patches:
   - target:
-      group: v1
       version: v1
-      kind: ServiceAccount
+      kind: Deployment
       name: observability-metrics-kube-state-metrics
       namespace: observability-metrics
-    patch: |-
-      apiVersion: v1
-      kind: ServiceAccount
-      metadata:
-        name: observability-metrics-kube-state-metrics
-        namespace: observability-metrics
-        annotations:
-          patched-by: flux
+    path: kube-state-custom-metrics.yaml
+  # - target:
+  #     group: v1
+  #     version: v1
+  #     kind: ServiceAccount
+  #     name: observability-metrics-kube-state-metrics
+  #     namespace: observability-metrics
+  #   patch: |-
+  #     apiVersion: v1
+  #     kind: ServiceAccount
+  #     metadata:
+  #       name: observability-metrics-kube-state-metrics
+  #       namespace: observability-metrics
+  #       annotations:
+  #         patched-by: flux

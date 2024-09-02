@@ -13,34 +13,34 @@ spec:
     kind: GitRepository
     name: observability-metrics
     namespace: observability-metrics
-  patches:
-    - patch: |
-        - op: add
-          path: /spec/template/spec/containers/0/args/-
-          value: --custom-resource-state-config
-        - op: add
-          path: /spec/template/spec/containers/0/args/-
-          value: |
-            Kind: CustomResourceStateMetrics
-            spec:
-              resources:
-                - groupVersionKind:
-                    group: xlscsde.nhs.uk
-                    version: "v1"
-                    kind: AnalyticsWorkspace
-                  metricNamePrefix: lscsde_workspace
-                  metrics:
-                    - name: "active"
-                      help: "Foo version"
-                      each:
-                        type: Info
-                        info:
-                          labelsFromPath:
-                            name: [metadata, name]
-      target:
-        kind: Deployment
-        name: observability-metrics-kube-state-metrics
-        namespace: observability-metrics
+  # patches:
+  #   - patch: |
+  #       - op: add
+  #         path: /spec/template/spec/containers/0/args/-
+  #         value: --custom-resource-state-config
+  #       - op: add
+  #         path: /spec/template/spec/containers/0/args/-
+  #         value: |
+  #           Kind: CustomResourceStateMetrics
+  #           spec:
+  #             resources:
+  #               - groupVersionKind:
+  #                   group: xlscsde.nhs.uk
+  #                   version: "v1"
+  #                   kind: AnalyticsWorkspace
+  #                 metricNamePrefix: lscsde_workspace
+  #                 metrics:
+  #                   - name: "active"
+  #                     help: "Foo version"
+  #                     each:
+  #                       type: Info
+  #                       info:
+  #                         labelsFromPath:
+  #                           name: [metadata, name]
+  #     target:
+  #       kind: Deployment
+  #       name: observability-metrics-kube-state-metrics
+  #       namespace: observability-metrics
 
 
 

@@ -4,7 +4,7 @@ metadata:
   name: observability-metrics
   namespace: observability-metrics #${observability_metrics_namespace}
   #annotations:
-    #xlscsde.nhs.uk/flux-branch: main #${keda_branch}
+    #xlscsde.nhs.uk/flux-branch: main #${observability-metrics}
 spec:
   #targetNamespace: observability-metrics #${observability_metrics_namespace}
   releaseName: observability-metrics

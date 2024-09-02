@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: observability-metrics
+  namespace: observability-metrics
+spec:
+  interval: 10m
+  url: https://github.com/lsc-sde/iac-flux-observability-metrics
+  ref:
+    branch: release/0.1.1

@@ -1,0 +1,15 @@
+name: Create Release Branch from Main
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+    - 'main'
+
+jobs:
+  package:
+    uses: lsc-sde/lsc-sde/.github/workflows/flux-release.yaml@main
+    with:
+      directory: iac/flux/iac-flux-observability-metrics
+      yamlPath: observability-metrics
+    secrets: inherit

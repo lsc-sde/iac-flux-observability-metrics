@@ -1,7 +1,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: rabbitmq-cluster
+  name: observability-metrics-overlay-metrics
   namespace: observability-metrics
 spec:
   dependsOn:

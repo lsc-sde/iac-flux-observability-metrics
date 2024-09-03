@@ -31,7 +31,7 @@ spec:
   #                 metricNamePrefix: lscsde_workspace
   #                 metrics:
   #                   - name: "active"
-  #                     help: "Foo version"
+  #                     help: "AnalyticsWorkspace is active"
   #                     each:
   #                       type: Info
   #                       info:

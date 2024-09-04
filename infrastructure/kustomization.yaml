@@ -4,3 +4,5 @@ namespace: observability-metrics
 resources:
   - namespace.yaml 
   - gitrepository.yaml
+  - secret.yaml
+  - ingress.yaml

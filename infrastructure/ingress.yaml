@@ -25,3 +25,33 @@ spec:
   - hosts:
     - ${environment_dns_prefix}prometheus${environment_dns_suffix}.${private_dnz_zone}
     secretName: ${environment_dns_prefix}prometheus${environment_dns_suffix}.${private_dnz_zone}-tls
+
+----
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: observability-metrics-grafana
+  namespace: observability-metrics
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect : "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect : "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: 64m
+    xlscsde.nhs.uk/dns-record: grafana${environment_dns_suffix}
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: ${environment_dns_prefix}grafana${environment_dns_suffix}.${private_dnz_zone}
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: observability-metrics-grafana
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - ${environment_dns_prefix}grafana${environment_dns_suffix}.${private_dnz_zone}
+    secretName: ${environment_dns_prefix}grafana${environment_dns_suffix}.${private_dnz_zone}-tls

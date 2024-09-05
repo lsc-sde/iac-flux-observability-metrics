@@ -55,7 +55,7 @@ spec:
                               type: Info
                               info:
                                 labelsFromPath:
-                                  name: [metadata, name]
+                                  workspace: [metadata, name]
                       - groupVersionKind:
                           group: xlscsde.nhs.uk
                           version: "v1"

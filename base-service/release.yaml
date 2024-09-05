@@ -33,6 +33,9 @@ spec:
           - patch: |
               - op: add
                 path: /spec/template/spec/containers/0/args/-
+                value: --metric-labels-allowlist=pods=[*]
+              - op: add
+                path: /spec/template/spec/containers/0/args/-
                 value: --custom-resource-state-config
               - op: add
                 path: /spec/template/spec/containers/0/args/-

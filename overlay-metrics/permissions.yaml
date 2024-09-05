@@ -4,7 +4,7 @@ metadata:
   name: kube-state-metrics-analyticsworkspaces
 rules:
   - apiGroups: ["xlscsde.nhs.uk"]
-    resources: ["analyticsworkspaces"]
+    resources: ["analyticsworkspaces", "analyticsworkspacebindings"]
     verbs: ["list", "watch"]
   - apiGroups: ["apiextensions.k8s.io"]
     resources: ["customresourcedefinitions"]

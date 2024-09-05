@@ -49,13 +49,26 @@ spec:
                           kind: AnalyticsWorkspace
                         metricNamePrefix: lscsde_workspace
                         metrics:
-                          - name: "active"
-                            help: "AnalyticsWorkspace is active"
+                          - name: "info"
+                            help: "AnalyticsWorkspace information"
                             each:
                               type: Info
                               info:
                                 labelsFromPath:
                                   name: [metadata, name]
+                      - groupVersionKind:
+                          group: xlscsde.nhs.uk
+                          version: "v1"
+                          kind: AnalyticsWorkspaceBinding
+                        metricNamePrefix: lscsde_workspace_binding
+                        metrics:
+                          - name: "info"
+                            help: "AnalyticsWorkspaceBinding information"
+                            each:
+                              type: Info
+                              info:
+                                labelsFromPath:
+                                  name: [spec]
             target:
               kind: Deployment
               name: observability-metrics-kube-state-metrics

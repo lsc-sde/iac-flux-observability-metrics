@@ -68,7 +68,9 @@ spec:
                               type: Info
                               info:
                                 labelsFromPath:
-                                  name: [spec]
+                                  expires: [spec, expires]
+                                  username: [spec, username]
+                                  workspace: [spec, workspace]
             target:
               kind: Deployment
               name: observability-metrics-kube-state-metrics

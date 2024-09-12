@@ -11,4 +11,3 @@ spec:
     kind: GitRepository
     name: observability-metrics
     namespace: observability-metrics
- 

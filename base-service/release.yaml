@@ -15,7 +15,9 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: prometheus-community
-        namespace: observability-metrics #${observability_metrics_namespace} 
+        namespace: observability-metrics #${observability_metrics_namespace}
+      valuesFiles:
+        - values.yaml 
   interval: 10s
   install:
     remediation:

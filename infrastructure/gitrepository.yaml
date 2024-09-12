@@ -7,4 +7,4 @@ spec:
   interval: 10m
   url: https://github.com/lsc-sde/iac-flux-observability-metrics
   ref:
-    branch: release/0.1.25
+    branch: release/0.1.26

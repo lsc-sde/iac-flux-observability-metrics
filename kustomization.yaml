@@ -4,3 +4,12 @@ resources:
   - infrastructure
   - ./base-service/flux-kustomization.yaml
   - ./overlay-metrics/flux-kustomization.yaml
+configMapGenerator:
+  - name: prom-environment-config
+    files:
+      - values.yaml=prom-environment-config.yaml
+  - name: thanos-secret-config
+    files:
+      - thanos.yaml=thanos-secret-config.yaml
+generatorOptions:
+  disableNameSuffixHash: true

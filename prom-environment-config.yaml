@@ -6,7 +6,7 @@ prometheus:
       image: quay.io/thanos/thanos:v0.28.1
       objectStorageConfig:
         existingSecret:
-          name: thanos-objstore-config
-          key: ./thanos-overlay/thanos.yaml
+          name: thanos-secret-config
+          key: thanos.yaml
   thanosService:
     enabled: true

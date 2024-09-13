@@ -17,8 +17,8 @@ spec:
         name: prometheus-community
         namespace: observability-metrics #${observability_metrics_namespace}
   valuesFrom:
-    kind: ConfigMap
-    name: prom-environment-config 
+    - kind: ConfigMap
+      name: prom-environment-config 
   interval: 10s
   install:
     remediation:

@@ -19,10 +19,10 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: prom-environment-config
-    - kind: Secret
-      name: thanos-secret-config
-      valuesKey: thanos_persistent_store_secret
-      targetPath: hub.cookieSecret 
+    # - kind: Secret
+    #   name: thanos-secret-config
+    #   valuesKey: thanos_persistent_store_secret
+    #   targetPath: hub.cookieSecret 
   interval: 10s
   install:
     remediation:

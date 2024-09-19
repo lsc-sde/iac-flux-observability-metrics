@@ -7,6 +7,6 @@ prometheus:
       objectStorageConfig:
         existingSecret:
           name: thanos-secret-config
-          key: thanos.yaml
+          key: thanos_persistent_store_secret
   thanosService:
     enabled: true

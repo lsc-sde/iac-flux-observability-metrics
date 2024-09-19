@@ -18,7 +18,11 @@ spec:
         namespace: observability-metrics #${observability_metrics_namespace}
   valuesFrom:
     - kind: ConfigMap
-      name: prom-environment-config 
+      name: prom-environment-config
+    - kind: Secret
+      name: thanos-secret-config
+      valuesKey: thanos_persistent_store_secret
+      targetPath: hub.cookieSecret 
   interval: 10s
   install:
     remediation:

@@ -1,12 +1,15 @@
 prometheus:
+  thanosService:
+    enabled: true
   prometheusSpec:
-    disableCompaction: true
-    storageSpec:
     thanos:
-      image: quay.io/thanos/thanos:v0.28.1
       objectStorageConfig:
         existingSecret:
           name: thanos-secret-config
           key: thanos_persistent_store_secret
-  thanosService:
-    enabled: true
+      
+prometheusOperator:
+  thanosImage:
+    registry: quay.io
+    repository: thanos/thanos
+    tag: v0.36.1

@@ -1,6 +1,7 @@
 prometheus:
   thanosService:
     enabled: true
+    clusterIP: ""
   prometheusSpec:
     thanos:
       objectStorageConfig:

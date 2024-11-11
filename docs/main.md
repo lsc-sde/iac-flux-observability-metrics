@@ -23,6 +23,7 @@ KAS aims to address the following TRE analytics and usage monitoring requirement
  
 ## Architecture & Integration
 The analytics service design relies on a set of FluxCD kustomizations to define the deployment of key components (i.e. prometheus, grafana) and custom resource metric overlays to provision the service within a K8TRE instance. TRE operators can choose to integrate this service as part of an K8TRE instance deployment by including a reference to its [git repository](https://github.com/lsc-sde/iac-flux-observability-metrics) in the [central helm configuration](https://github.com/lsc-sde/iac-helm-lscsde-flux) and [flux configuration](https://github.com/lsc-sde/iac-flux-lscsde) repositories that control your K8TRE deployment settings. Specifically, in the helm configuration repository for the K8TRE, edit the values.yaml file similar to:
+
 ```yaml
   observability_metrics:
 	state: "enabled"
@@ -50,17 +51,17 @@ These configurations inform the fluxCD controllers running in your target cluste
 
 K8TRE's observability metrics service uses prometheus that polls and scraps metrics from infrastructure components and custom resources via the metrics-server and [kube-state-metrics (KSM)](https://github.com/kubernetes/kube-state-metrics) agents. These agents listen on the control plane for object state changes and generate relevant metrics that are stored in prometheus. The K8TRE metrics service includes modifications to the kube-state-metrics agent to additionally generate metrics related to K8TRE workspace and workspace user binding objects. Current custom metrics provide real-time information on the state of TRE workspaces and users to generate higher order analytics that are provided through Grafana. For developers looking to extend metric creation capabilities, more information on how to define "CustomResourceStateMetrics" objects can be found [here](https://github.com/kubernetes/kube-state-metrics/blob/main/docs/metrics/extend/customresourcestate-metrics.md).
 
-![image](https://hackmd.io/_uploads/HJOZbB5-1x.png)
+![Architecture](metrics-arch-design.jpg)
 
 Grafana is configured to integrate prometheus as a data source and includes a number of out-of-the-box monitoring dashboards.
 
-![image](https://hackmd.io/_uploads/rkh1kLq-1x.png)
+![image](dashboards-list.png)
 
 In addition, this service includes two K8TRE specific dashboards (K8TRE Platform and User Analytics shown below) that provide TRE operators with SATRE-compliant usage metrics.
 
-![Screenshot 2024-09-09 at 09.57.04](https://hackmd.io/_uploads/HkL0oScWJg.png)
+![Screenshot 2024-09-09 at 09.57.04](platform-dash.png)
 
-![Screenshot 2024-09-09 at 09.58.22](https://hackmd.io/_uploads/Sytair5ZJg.png)
+![Screenshot 2024-09-09 at 09.58.22](user-dash.png)
 
 ### Persistent Storage
 To provide long-term persistent storage of infrastructure metrics the analytics service integrates with Thanos that adds unlimited retention capabilities to prometheus. Thanos runs as a container sidecar along with prometheus to periodically sync database snapshots to a specified external data store. The current implementation defaults to using an Azure blob storage account. However, developers can configure access to other [Thanos supported object stores](https://thanos.io/tip/thanos/storage.md) by modifying the prom-environment-config.yaml file in the [metrics service git repository](https://github.com/lsc-sde/iac-flux-observability-metrics).
